@@ -26,6 +26,11 @@ export class AuthGuard implements CanActivateChild {
                     this.data.openSnackBar('Please Login!!', 'OK');
                     return false;
                 });
+        } else {
+            this.router.navigate(['/login']);
+            localStorage.removeItem('currentUser');
+            this.data.openSnackBar('Please Login!!', 'OK');
+            return false;
         }
     }
 }
