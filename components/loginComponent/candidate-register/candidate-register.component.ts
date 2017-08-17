@@ -172,7 +172,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   // on form submit
   onRegister(userdata: any) {
-    let dobOfUser = new Date(userdata.get('dobControl').value) ;
+    let dobOfUser = new Date(userdata.get('dob').value) ;
    dobOfUser.setDate(dobOfUser.getDate() + 1);
     this.loading = true;
     // check who is creating user
