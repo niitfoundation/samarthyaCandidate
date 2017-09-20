@@ -1,5 +1,6 @@
 <div *ngIf="profileConfig && profileData && profileCardData">
-  <div fxLayout="row" fxLayout.xs="column" class="profilePage">
+  <div fxLayout ="column" fxLayout.gt-sm="row" class="profilePage"> 
+  
     <!--profile Card section-->
     <div fxFlex.gt-xs="14%"></div>
     <div class="profileCard">
@@ -10,7 +11,7 @@
     <div fxFlex="10px"></div>
     <!--view profile sections dynamic-->
     <div fxFlex class="profileSection">
-      <div fxLayout="row" fxLayoutWrap>
+      <div fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutWrap >
         <div *ngFor="let section of profileSections" fxFlex>
           <sam-profile-section [sectionFieldConfig]="getSectionConfig(section.name)" [sectionData]="getSectiondata(section.name)" [sectionTitle]="section.title"
             [alignElement]="section.align">
