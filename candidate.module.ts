@@ -3,6 +3,8 @@ import { SkillsFormRender } from './components/profileSectionForm/skillsDialogFo
 import { WorkExperienceForm } from './components/profileSectionForm/workExperienceForm/workExperienceForm.component';
 import { JobPreferenceFormRender } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceFormRender/jobPreferenceFormRender.component';
 import { JobPreferenceForm } from './components/profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
+import { PlacementHistoryForm } from './components/profileSectionForm/placementHistoryForm/placementHistoryForm.component';
+import { PlacementHistoryFormRender } from './components/profileSectionForm/placementHistoryForm/placementHistoryFormRender/placementHistoryFormRender.component';
 import { SummaryForm } from './components/profileSectionForm/summaryForm/summaryForm.component';
 import { ProjectsFormRender } from './components/profileSectionForm/projectsForm/projectsFormRender/projectsFormRender.component';
 import { SkillsForm } from './components/profileSectionForm/skillsDialogForm/skillsForm.component';
@@ -84,10 +86,12 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     JobPreferenceFormRender,
     ProjectsFormRender,
     ProjectsForm,
+    PlacementHistoryForm,
     QualificationFormRender,
+    PlacementHistoryFormRender,
     WorkExperienceFormRender
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm, QualificationForm],
+  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm, QualificationForm, PlacementHistoryForm],
   exports: [
     SkillsForm,
     SkillsFormRender,
@@ -111,9 +115,11 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     WorkExperienceForm,
     SummaryForm,
     JobPreferenceForm,
+    PlacementHistoryForm,
     ProjectsForm,
     JobPreferenceFormRender,
     ProjectsFormRender,
+    PlacementHistoryFormRender,
     QualificationFormRender,
     WorkExperienceFormRender
   ]
