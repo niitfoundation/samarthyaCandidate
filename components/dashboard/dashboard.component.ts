@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
 import { PersonalInfoForm } from './../profileSectionForm/personalInfoForm/personalInfoForm.component';
 import { JobPreferenceForm } from './../profileSectionForm/jobPreferenceForm/jobPreferenceForm.component';
+import { PlacementHistoryForm } from './../profileSectionForm/placementHistoryForm/placementHistoryForm.component';
+
 import { ProjectsForm } from './../profileSectionForm/projectsForm/projectsForm.component';
 import { SamProfileCardService } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.service';
 import { SamProfileSectionConfigService } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section-config.service';
@@ -50,6 +52,7 @@ export class DashboardComponent implements OnInit {
       { 'name': 'experiences', 'title': 'Experiences', 'align': 'column' },
       { 'name': 'skills', 'title': 'Skills', 'align': 'row' },
       { 'name': 'projects', 'title': 'Projects', 'align': 'column' },
+      { 'name': 'placementHistory', 'title': 'Placement History', 'align': 'column'},
     ];
   }
 
@@ -63,6 +66,7 @@ export class DashboardComponent implements OnInit {
   public qualificationsData: any[] = [];
   public workExperienceData: any[] = [];
   public summaryData: {} = {};
+  public placementHistoryData: {} = {};
 
   // this function will work when clicked on edit btn
   onEdit(sectionName: string) {
@@ -74,6 +78,7 @@ export class DashboardComponent implements OnInit {
       case 'summary': this.openSummaryDialog(); break;
       case 'projects': this.openProjectsDialog(); break;
       case 'skills': this.openSkillsDialog(); break;
+      case 'placementHistory': this.openPlacementHistoryDialog(); break;
     }
   }
 
@@ -143,6 +148,15 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
     })
   }
+  openPlacementHistoryDialog(){
+    let dialogRef = this.dialog.open(PlacementHistoryForm, {
+      height: '80%',
+      width: '80%',
+      data: this.placementHistoryData
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
+  }
 
   ngOnInit() {
     // this will get the data for profile config
@@ -167,10 +181,11 @@ export class DashboardComponent implements OnInit {
           this.jobpreferenceInfoData = resEmployeeData.jobPreferences,
           this.personalInfoData = resEmployeeData.personalInfo,
           this.qualificationsData = resEmployeeData.qualifications,
-          this.projectsData = resEmployeeData.projects
-        this.skillsData = resEmployeeData.skills,
-          this.workExperienceData = resEmployeeData.experiences
-        this.summaryData = resEmployeeData.summary
+          this.projectsData = resEmployeeData.projects,
+          this.skillsData = resEmployeeData.skills,
+          this.workExperienceData = resEmployeeData.experiences,
+          this.summaryData = resEmployeeData.summary,
+          this.placementHistoryData = resEmployeeData.placementHistory
       });
 
     // this.profileData = this.SamProfileService.getProfileData(JSON.parse(localStorage.getItem('currentUser'))['username'])
