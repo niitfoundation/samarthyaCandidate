@@ -1,0 +1,102 @@
+<form [formGroup]="userForm">
+	<div formArrayName = "AllPlacementHistory">
+    <div *ngFor="let address of userForm.controls.AllPlacementHistory.controls; let i=index" class="panel panel-default">
+	<button md-icon-button class="pull-right" *ngIf="userForm.controls.AllPlacementHistory.controls.length > 0" (click)="removePlacementHistory(i)"><i class="material-icons">close</i></button>
+
+	<div class="panel-body" [formGroupName]="i">
+            <span>Candidate had applied for </span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="workplace" id="workplace" type="text" class="validate" placeholder="WorkPlace Name" />
+
+            </md-input-container>
+            <span>with designation</span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="designation" id="designation" type="text" class="validate" placeholder="Designation Name"/>
+                  
+            </md-input-container>
+            <br>
+            <span>and Job Role </span>
+            <md-input-container class="full-width">
+                <input mdInput formControlName="jobRole" id="jobRole" type="text" class="validate" placeholder="Job Role" />
+               
+        	</md-input-container>
+        	<span>. The Work Location being </span>
+
+	        <md-input-container class="full-width">
+	            <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="worklocation" />
+	           
+	    	</md-input-container>
+	    	<div >
+            	<span>from</span>
+    	        <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="from" id="from" placeholder="start year" class="full-width">date</md2-datepicker>
+    	        <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.from.valid && userForm.controls.AllPlacementHistory.controls[i].controls.from.touched"
+    	            class="errorStyle">
+
+    		    </div>
+
+    		    <span class="lineHeight">till</span>
+    		    <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="till" id="till" placeholder="end year" class="full-width">date</md2-datepicker>
+    		    <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.till.valid && userForm.controls.AllPlacementHistory.controls[i].controls.till.touched"
+    		        class="errorStyle">
+
+    		    </div>
+         	</div>
+         	<span> with a salary of </span>
+         	<md-input-container class="full-width">
+                    <input mdInput formControlName="salary" id="salary" type="text" class="validate" placeholder="Salary"/>
+                  
+            </md-input-container>
+            <span>. The Candidate was placed by </span>
+            <md-select placeholder="Placement Type" formControlName="placementType" id="placementType">
+	          <md-option *ngFor="let placementType of placementTypeData" [value]="placementType.value">
+	            {{ placementType.name }}
+	          </md-option>
+	        </md-select>
+            <span>and was assissted by </span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="coordinatorName" id="coordinatorName" type="text" class="validate" placeholder="Coordinator Name"/>
+                  
+            </md-input-container>
+            <span>whose contact is </span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="coordinatorContact" id="coordinatorContact" type="text" class="validate" placeholder="Coordinator Contact"/>
+                  
+            </md-input-container>
+            <span>and remarks is </span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="placementRemarks" id="placementRemarks" type="text" class="validate" placeholder="Remarks"/>
+                  
+            </md-input-container>
+            <span>. Candidate </span>
+            <md-select placeholder="Status" formControlName="placementStatus" id="placementStatus">
+	          <md-option *ngFor="let option of options" [value]="option.value">
+	            {{ option.name }}
+	          </md-option>
+	        </md-select>
+	        <span> the offer. Company's HR is </span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="employerName" id="employerName" type="text" class="validate" placeholder="HR Name"/>
+                  
+            </md-input-container>
+            <span>whose contact is </span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="employerContact" id="employerContact" type="text" class="validate" placeholder="HR Contact"/>
+                  
+            </md-input-container>
+            <span>and feedback is </span>
+            <md-input-container class="full-width">
+                    <input mdInput formControlName="employerFeedback" id="employerFeedback" type="text" class="validate" placeholder="Feedback"/>
+                  
+            </md-input-container>
+
+    </div>
+    <br>
+    <hr>
+    <br>
+    </div>
+    </div> 
+
+        <button md-raised-button type="submit" color="primary" (click)="addPlacementHistory()">ADD</button>
+        <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid" md-dialog-close>Save</button>    
+
+</form>

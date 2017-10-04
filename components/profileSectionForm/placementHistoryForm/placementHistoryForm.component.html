@@ -1,0 +1,19 @@
+<h2 md-dialog-title>
+
+  <div fxLayout="row">
+    <div>Edit Placement History Information</div>
+    <div fxFlex></div>
+    <div>
+      <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+      </button>
+
+    </div>
+  </div>
+</h2>
+<md-dialog-content>
+    <placementHistory-form-render [placementHistoryData]="placementHistoryValue"></placementHistory-form-render> 
+    <div fxLayout="row">
+        <div fxFlex></div>
+    </div>
+</md-dialog-content>
