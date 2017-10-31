@@ -15,23 +15,24 @@ import {AuthenticationService} from './../../../../services/authentication.servi
 })
 
 export class PlacementHistoryFormRender implements OnInit {
-
+selectedValue : String;
  public userForm: FormGroup;
 
   @Input()
   public placementHistoryData: any[];  
 
+  public coordinatorNames : any[] = this.fetchCoordinators();
+
   public placementTypeData = [
-    { name: 'SELF', value: 'self' },
-    { name: 'NIIT COORDINATOR', value: 'niit coordinator' },
-    { name: 'OTHERS', value: 'others' },
-    { name: 'UNKNOWN', value: 'unknown' }
+    { name: 'Yes', value: 'niit coordinator' },
+    { name: 'No', value: 'self' }
   ];
+  
+  
   public options = [
-    { name: 'HAS REJECTED', value: 'has rejected' },
-    { name: 'WAS REJECTED FOR', value: 'was rejected for' },
-    { name: 'HAS ACCEPTED', value: 'has accepted' },
-    { name: 'IS IN PROGRESS', value: 'is in progress' }
+    { name: 'IS IN PROGRESS', value: 'is in progress' },
+    { name: 'HAS JOINED', value: 'has joined' },
+    { name: 'NOT JOINED', value: 'not joined' }
   ];
 
   constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data, private authenticationService:AuthenticationService) {
@@ -39,9 +40,10 @@ export class PlacementHistoryFormRender implements OnInit {
  
   minDate: Date = null;
   maxDate: Date = null
-
+  
+  
   ngOnInit(){
-
+    
     let today: Date = new Date();
     // this.minDate = new Date(today);
     // this.minDate.setMonth(this.minDate.getMonth() - 3);
@@ -72,8 +74,8 @@ export class PlacementHistoryFormRender implements OnInit {
         till: [placementHistory.duration.end, Validators.required],
         salary: [placementHistory.salary], //Max six digits, a dot, max two digits after dot
         placementType: [placementHistory.placementType, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        placementStatus: [placementHistory.options],
-        coordinatorName: [placementHistory.coordinatorName, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        placementStatus: [placementHistory.placementStatus,[Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        coordinatorName: [placementHistory.coordinatorName],
         coordinatorContact: [placementHistory.coordinatorContact], // contact number with +91 - India Code
         placementRemarks: [placementHistory.placementRemarks, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
         employerName: [placementHistory.employerName, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
@@ -96,7 +98,7 @@ export class PlacementHistoryFormRender implements OnInit {
         salary: [''], //Max six digits, a dot, max two digits after dot
         placementType: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
         placementStatus: [''],
-        coordinatorName: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        coordinatorName: ['',[Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]], 
         coordinatorContact: [''], // contact number with +91 - India Code
         placementRemarks: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
         employerName: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
@@ -116,11 +118,15 @@ export class PlacementHistoryFormRender implements OnInit {
     control.removeAt(i);
     }
 
+    // coordinatorDetail(ans: string) {
+    //   this.answer = ans;
+    // }
+
     onSave() {
     let sectionName = 'placementHistory';
     let placementHistory: any = [];
     this.userForm.value.AllPlacementHistory.forEach(function (d: any) {
-      let obj = { 'workplace': d.workplace, 'duration': { 'start': d.from, 'end': d.till }, 'designation': d.designation, 'jobRole': d.jobRole, 'iscurrent': d.iscurrent, 'location': d.location, 'salary': d.salary, 'placementType': d.placementType, 'placementStatus': d.placementStatus, 'coordinatorName': d.coordinatorName, 'coordinatorContact': d.coordinatorName, 'placementRemarks': d.placementRemarks, 'employerName': d.employerName, 'employerContact': d.employerContact, 'employerFeedback': d.employerFeedback }
+      let obj = { 'workplace': d.workplace, 'duration': { 'start': d.from, 'end': d.till }, 'designation': d.designation, 'jobRole': d.jobRole, 'iscurrent': d.iscurrent, 'location': d.location, 'salary': d.salary, 'placementType': d.placementType, 'placementStatus': d.placementStatus, 'coordinatorName': d.coordinatorName, 'coordinatorContact': d.coordinatorContact, 'placementRemarks': d.placementRemarks, 'employerName': d.employerName, 'employerContact': d.employerContact, 'employerFeedback': d.employerFeedback }
       placementHistory.push(obj);
     })
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
@@ -141,5 +147,27 @@ export class PlacementHistoryFormRender implements OnInit {
         this.data.openSnackBar('Technical Error', 'Try again');
 
       });
-  }
+    }
+
+    fetchCoordinators(){
+      let coordinators : any = [];
+      let profession : String;
+      let currentuser = JSON.parse(localStorage.getItem('currentUser'));
+      this.http.get('/profile?username=' + currentuser.username+'&token='+currentuser.token).subscribe((response: Response) => {
+        let profileData = response.json();
+        profileData = profileData['data'][0];
+        profession = profileData.profession;
+        let params = {role: 'Coordinator', professionArray: profession, page: 1, limit: 5};
+        this.http.get('/coordinates?role='+params.role+'&professionArray='+params.professionArray+'&page='+params.page+'&limit='+params.limit).subscribe((res: Response)=>{
+          let data : any = res.json();
+          data.forEach(function(record:String){
+            coordinators.push(record['personalInfo'].name);
+          })  
+        }) 
+      })  
+     return coordinators;
+    }
+
 }
+
+  
