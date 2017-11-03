@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { FormGroup, FormArray, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormArray, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { Http, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
@@ -96,7 +96,7 @@ selectedValue : String;
         from: ['', Validators.required],
         till: ['', Validators.required],
         salary: [''], //Max six digits, a dot, max two digits after dot
-        placementType: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        placementType: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$'), this.validateSelf]],
         placementStatus: [''],
         coordinatorName: ['',[Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]], 
         coordinatorContact: [''], // contact number with +91 - India Code
@@ -147,6 +147,18 @@ selectedValue : String;
         this.data.openSnackBar('Technical Error', 'Try again');
 
       });
+    }
+
+    validateSelf(control : AbstractControl) : {[s:string ]: boolean} {
+      const group = control.parent;
+      if (group) {
+        if(group.controls['placementType'].value=="self"){
+       
+          group.controls['coordinatorName'].patchValue(group.controls['coordinatorName'].valid , true);
+          group.controls['placementRemarks'].patchValue(group.controls['placementRemarks'].valid , true);
+        }     
+      }    
+      return null;
     }
 
     fetchCoordinators(){
