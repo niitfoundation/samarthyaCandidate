@@ -44,14 +44,14 @@ export class CandidateRegisterComponent implements OnInit {
 
     // register candidate form
     this.userForm = fb.group({
-      name: ['', [Validators.required,Validators.pattern('[A-Za-z0-9 ]{2,}')]],
-      fname: ['', [Validators.required,Validators.pattern('[A-Za-z ]{2,}')]],
-      lname: ['', [Validators.required,Validators.pattern('[A-Za-z ]{1,}')]],
+      name: ['', [Validators.required,Validators.pattern('[A-Za-z0-9 ]{2,30}')]],
+      fname: ['', [Validators.required,Validators.pattern('[A-Za-z ]{2,30}')]],
+      lname: ['', [Validators.required,Validators.pattern('[A-Za-z ]{1,30}')]],
       gender: ['male', Validators.required],
       email: ['', Validators.required],
-      regId: ['', [Validators.required,Validators.pattern(/^\d{6}$/)]],
+      regId: ['', [Validators.required,Validators.pattern(/^R\d{2}F\d{9}$/)]],
       dob: ['', Validators.required],
-      aadhar: ['', [Validators.required, Validators.pattern(/^\d{12}$/)]],
+      aadhar: ['', [Validators.pattern(/^\d{12}$/)]],
       mob: ['', [Validators.required, , Validators.pattern('[0-9]{10}')]],
       role: ['candidate'],
       password: ['', [Validators.required, Validators.pattern(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,24}$/)]],

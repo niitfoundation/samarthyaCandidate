@@ -11,7 +11,7 @@
   <md-grid-tile>
     <!--card Start-->
     <md-card class="loginCard">
-      <md-card-title>Registration</md-card-title>
+      <md-card-title>Candidate Registration</md-card-title>
       <md-card-content>
         <form [formGroup]="userForm">
 
@@ -30,10 +30,10 @@
                 <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Choose a name to display in profile*" />
                 <md-hint align="start" class="full-width">
                   <div *ngIf="userForm.get('name').hasError('required') && userForm.get('name').touched" class="errorStyle">
-                    Display Name is required
+                    Display Name is required 
                   </div>
                   <div *ngIf="userForm.get('name').hasError('pattern')" class="errorStyle">
-                    Display Name should be more than 1 letters or digits
+                    Display Name should be more than 1 letter or digits and less than 30 characters
                   </div>
                 </md-hint>
               </md-input-container>
@@ -53,7 +53,7 @@
                     First Name is required
                   </div>
                   <div *ngIf="userForm.get('fname').hasError('pattern')" class="errorStyle">
-                    First Name should be more than 1 letters
+                    First Name should be more than 1 letter and less than 30 characters
                   </div>
                 </md-hint>
               </md-input-container>
@@ -73,7 +73,7 @@
                     Last Name is required
                   </div>
                   <div *ngIf="userForm.get('lname').hasError('pattern')" class="errorStyle">
-                    Last Name should be more than 1 letters
+                    Last Name should be more than 1 letter and less than 30 characters
                   </div>
                 </md-hint>
               </md-input-container>
@@ -197,7 +197,7 @@
                 <input mdInput formControlName="regId" id="regId" type="text" class="validate" placeholder="Registration Id*" />
                 <md-hint align="start" class="full-width">
                    <div *ngIf="userForm.get('regId').hasError('pattern')" class="errorStyle">
-                    Registration ID should be 6 digits(eg:123123)
+                    Registration ID should be in format(eg:R18F203300789)
                   </div>
                   <div *ngIf="userForm.get('regId').hasError('required') && userForm.get('regId').touched" class="errorStyle">
                     Registration ID is required
