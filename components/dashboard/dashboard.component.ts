@@ -85,8 +85,7 @@ export class DashboardComponent implements OnInit {
   openPicLinkDialog(){
     let dialogRef = this.dialog.open(ProfilePicComponent, {
       height: '20%',
-      width: '30%',
-      data: this.
+      width: '30%'
     });
     dialogRef.afterClosed().subscribe(result => {
     })
