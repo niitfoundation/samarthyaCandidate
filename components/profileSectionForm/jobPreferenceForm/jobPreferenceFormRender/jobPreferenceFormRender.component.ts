@@ -17,11 +17,15 @@ export class JobPreferenceFormRender implements OnInit {
 
   public userForm: FormGroup;
 
+  public jobRoles: any[] = this.getJobRoles();
+  public skills: any[] = this.getSkills();
+
   @Input()
   public jobPreferenceData: any[];
 
   public engagementData = ['Full Time', 'Part Time', 'Flexible'];
   public locationData = ['Bangalore', 'Pune', 'Delhi', 'Gurgaon', 'Chennai'];
+  public shiftData = ['Morning Shift', 'Evening Shift', 'Overnight Shift'];
 
   constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data, private AuthenticationService:AuthenticationService) {
   }
@@ -31,7 +35,6 @@ export class JobPreferenceFormRender implements OnInit {
 
 
   ngOnInit() {
-
 
     let today: Date = new Date();
     // this.minDate = new Date(today);
@@ -56,6 +59,7 @@ export class JobPreferenceFormRender implements OnInit {
       return this.fb.group({
         name: [jobPreference.name, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
         engagement: [jobPreference.engagement, [Validators.required, Validators.pattern(/[a-z]/)]],
+        shift: [jobPreference.shift, [Validators.required, Validators.pattern(/[a-z]/)]],
         expectedSalMin: [jobPreference.expectedSal.min, [Validators.required, Validators.pattern(/[0-9]/)]],
         expectedSalMax: [jobPreference.expectedSal.max, [Validators.required, Validators.pattern(/[0-9]/)]],
         skills: [jobPreference.skills, [Validators.required]],
@@ -72,6 +76,7 @@ export class JobPreferenceFormRender implements OnInit {
     return this.fb.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
       engagement: ['', [Validators.required, Validators.pattern(/[a-z]/)]],
+      shift: ['', [Validators.required, Validators.pattern(/[a-z]/)]],
       expectedSalMin: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
       expectedSalMax: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
       skills: ['', [Validators.required]],
@@ -104,7 +109,7 @@ export class JobPreferenceFormRender implements OnInit {
         skill=d.skills;
       }
 
-      let obj = { 'name': d.name, 'expectedSal': { 'min': d.expectedSalMin, 'max': d.expectedSalMax }, 'engagement': d.engagement, 'skills': skill, 'availablefrom': d.availableFrom, 'locations': d.locations }
+      let obj = { 'name': d.name, 'expectedSal': { 'min': d.expectedSalMin, 'max': d.expectedSalMax }, 'engagement': d.engagement, 'shift':d.shift, 'skills': skill, 'availablefrom': d.availableFrom, 'locations': d.locations }
       jobs.push(obj);
     })
     let jobPref = { looking: true, jobRoles: jobs }
@@ -127,6 +132,28 @@ export class JobPreferenceFormRender implements OnInit {
 
       });
 
+  }
+
+  getJobRoles(){
+    let jobRoles : any = [];
+    this.http.get('/roles').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(roles: String){
+        jobRoles.push(roles['name']);
+      })
+    })
+    return jobRoles;
+  }
+
+  getSkills(){
+    let skills : any = [];
+    this.http.get('/skills').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(skill: String){
+        skills.push(skill['name']);
+      })
+    })
+    return skills;
   }
 
 }
