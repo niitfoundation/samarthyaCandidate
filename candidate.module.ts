@@ -49,6 +49,7 @@ import { ProfileService } from 'samarthyaWebcomponent/sam-profile/sam-profile-se
 import { SamProfileSectionFormComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-section-form/sam-profile-section-form.component';
 import { SamProfileSectionComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section.component';
 import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.component';
+import { ProfilePicComponent } from './components/dashboard/profilePicture.component';
 
 @NgModule({
   imports: [
@@ -67,6 +68,7 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     SkillsForm,
     AboutUsComponent,
     CandidateRegisterComponent,
+    ProfilePicComponent,
     DashboardComponent,
     LayoutComponent,
     LoginComponent,
@@ -91,7 +93,7 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     PlacementHistoryFormRender,
     WorkExperienceFormRender
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm, QualificationForm, PlacementHistoryForm],
+  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm, QualificationForm, PlacementHistoryForm, ProfilePicComponent],
   exports: [
     SkillsForm,
     SkillsFormRender,
@@ -99,6 +101,7 @@ import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-p
     DashboardComponent,
     LayoutComponent,
     LoginComponent,
+    ProfilePicComponent,
     CandidateRegisterComponent,
     ForgotPasswordComponent,
     LoginFooterComponent,
