@@ -30,4 +30,8 @@ export class LoginHeaderComponent implements OnInit {
   public login() {
     this.router.navigate(['/login']);
   }
+
+  public samarthya() {
+    this.router.navigate(['/login']);
+  }
 }
