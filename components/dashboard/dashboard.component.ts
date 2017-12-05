@@ -3,7 +3,7 @@ import { WorkExperienceForm } from './../profileSectionForm/workExperienceForm/w
 import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { SummaryForm } from './../profileSectionForm/summaryForm/summaryForm.component';
 import { UserService } from './../../services/user.service';
-
+import { ProfilePicComponent } from './profilePicture.component';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
@@ -80,6 +80,16 @@ export class DashboardComponent implements OnInit {
       case 'skills': this.openSkillsDialog(); break;
       case 'placementHistory': this.openPlacementHistoryDialog(); break;
     }
+  }
+
+  openPicLinkDialog(){
+    let dialogRef = this.dialog.open(ProfilePicComponent, {
+      height: '20%',
+      width: '30%',
+      data: this.
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    })
   }
 
   openQualificationsDialog() {
@@ -177,6 +187,7 @@ export class DashboardComponent implements OnInit {
 
     this.SamProfileService.getProfile(JSON.parse(localStorage.getItem('currentUser'))['username'])
       .subscribe((resEmployeeData: any) => {
+        console.log(resEmployeeData);
         this.profileData = resEmployeeData,
           this.jobpreferenceInfoData = resEmployeeData.jobPreferences,
           this.personalInfoData = resEmployeeData.personalInfo,
