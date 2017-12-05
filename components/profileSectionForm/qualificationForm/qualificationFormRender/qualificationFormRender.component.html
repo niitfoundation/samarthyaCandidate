@@ -6,38 +6,44 @@
  <br>
       <div class="panel-body" [formGroupName]="i">
     <span>I am </span>
-     <md-input-container class="full-width">
-          <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Qualification Name" />
+     <md-select formControlName="name" placeholder="Qualification Name" class="full-width">
+      <md-option *ngFor="let qualification of qualifications" color="accent" [value]="qualification">
+                  {{ qualification }}
+      </md-option>
           <md-hint align="start" class="full-width">
             <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.name.valid && userForm.controls.AllQualifications.controls[i].controls.name.touched" class="errorStyle">
              Qualification Name is Required
             </div>
           </md-hint>
-        </md-input-container>
+    </md-select>
 
 
     <span>I have done my </span>
   
-     <md-input-container class="full-width">
-          <input mdInput formControlName="academictype" id="academictype" type="text" class="validate" placeholder="Academictype" />
+     <md-select formControlName="academictype" class="validate" placeholder="Academictype" class="full-width">
+      <md-option *ngFor="let academictype of academictypes" color="accent" [value]="academictype">
+                  {{ academictype }}
+      </md-option>
           <md-hint align="start" class="full-width">
             <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.academictype.valid && userForm.controls.AllQualifications.controls[i].controls.academictype.touched" class="errorStyle">
             Academictype is Required
             </div>
           </md-hint>
-        </md-input-container>
+        </md-select>
 
 
     <span> in </span>
     
-    <md-input-container class="full-width">
-          <input mdInput formControlName="subject" id="subject" type="text" class="validate" placeholder="Subject" />
+    <md-select formControlName="subject" placeholder="Subject" class="full-width">
+      <md-option *ngFor="let subject of subjects" color="accent" [value]="subject">
+                  {{ subject }}
+      </md-option>
           <md-hint align="start" class="full-width">
             <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.subject.valid && userForm.controls.AllQualifications.controls[i].controls.subject.touched" class="errorStyle">
             Subject is Required
             </div>
           </md-hint>
-        </md-input-container>
+        </md-select>
 
     
 
@@ -84,14 +90,17 @@
 
     <span> and is located in </span>
 
-   <md-input-container class="full-width">
-          <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="Location" />
+   <md-select formControlName="location" placeholder="Location" class="full-width">
+      <md-option *ngFor="let location of locations" color="accent" [value]="location">
+                  {{ location }}
+      </md-option>
+          
           <md-hint align="start" class="full-width">
             <div *ngIf="!userForm.controls.AllQualifications.controls[i].controls.location.valid && userForm.controls.AllQualifications.controls[i].controls.location.touched" class="errorStyle">
             Location is Required
             </div>
           </md-hint>
-        </md-input-container>
+        </md-select>
 
  <div fxLayout="row">
           <div fxFlex></div>
@@ -103,7 +112,7 @@
     </div>
   </div>
   <button md-raised-button type="submit" color="primary"  (click)="addQualifications()">ADD</button>
-  <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid"  md-dialog-close>Save</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()" md-dialog-close>Save</button>
 
 
 </form>

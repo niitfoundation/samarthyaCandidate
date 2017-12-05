@@ -19,6 +19,11 @@ export class QualificationFormRender implements OnInit {
   @Input()
   public qualificationsData: any[];
 
+  public qualifications: any[] = this.getQualifications();
+  public academictypes: any[] = this.getAcademictypes();
+  public subjects: any[] = this.getSubjects();
+  public locations: any[] = this.getLocations();
+
   constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data,private authenticationService:AuthenticationService) {
   }
 
@@ -113,5 +118,49 @@ export class QualificationFormRender implements OnInit {
 
       });
 
+  }
+
+  getQualifications(){
+    let qualifications : any = [];
+    this.http.get('/qualifications').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(qualification: String){
+        qualifications.push(qualification['name']);
+      })
+    })
+    return qualifications;
+  }
+
+  getAcademictypes(){
+    let academictypes : any = [];
+    this.http.get('/qualifications/academictypes').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(academictype: String){
+        academictypes.push(academictype);
+      })
+    })
+    return academictypes;
+  }
+
+  getSubjects(){
+    let subjects : any = [];
+    this.http.get('/qualifications/subjects').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(subject: String){
+        subjects.push(subject);
+      })
+    })
+    return subjects;
+  }
+
+  getLocations(){
+    let locations : any = [];
+    this.http.get('/locations').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(location: String){
+        locations.push(location['name']);
+      })
+    })
+    return locations;
   }
 }

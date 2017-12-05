@@ -22,6 +22,9 @@ export class WorkExperienceFormRender implements OnInit {
   @Input()
   public workExperienceData: any[];
 
+  public jobRoles: any[] = this.getJobRoles();
+  public locations: any[] = this.getLocations();
+  
   constructor(private fb: FormBuilder, private location: Location, private http: Http, private router: Router, private data: Data, private authenticationService:AuthenticationService) {
   }
 
@@ -54,6 +57,7 @@ export class WorkExperienceFormRender implements OnInit {
         workplace: [experience.workplace, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
         designation: [experience.designation, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
         jobRole: [experience.jobRole, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        lastSalary: [experience.lastSalary],
         location: [experience.location, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
         from: [experience.duration.start, Validators.required],
         till: [experience.duration.end, Validators.required],
@@ -70,6 +74,7 @@ export class WorkExperienceFormRender implements OnInit {
       workplace: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
       designation: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
       jobRole: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+      lastSalary: [''],
       location: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
       from: ['', Validators.required],
       till: ['', Validators.required],
@@ -90,7 +95,7 @@ export class WorkExperienceFormRender implements OnInit {
     let sectionName = 'experiences';
     let experience: any = [];
     this.userForm.value.AllWorkExperience.forEach(function (d: any) {
-      let obj = { 'workplace': d.workplace, 'duration': { 'start': d.from, 'end': d.till }, 'designation': d.designation, 'jobRole': d.jobRole, 'iscurrent': d.iscurrent, 'location': d.location }
+      let obj = { 'workplace': d.workplace, 'duration': { 'start': d.from, 'end': d.till }, 'designation': d.designation, 'jobRole': d.jobRole, 'lastSalary': d.lastSalary, 'iscurrent': d.iscurrent, 'location': d.location }
       experience.push(obj);
     })
     let currentuser = JSON.parse(localStorage.getItem('currentUser'));
@@ -112,8 +117,26 @@ export class WorkExperienceFormRender implements OnInit {
 
       });
   }
-
-
+  getJobRoles(){
+    let jobRoles : any = [];
+    this.http.get('/roles').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(roles: String){
+        jobRoles.push(roles['name']);
+      })
+    })
+    return jobRoles;
+  }
+  getLocations(){
+    let locations : any = [];
+    this.http.get('/locations').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(location: String){
+        locations.push(location['name']);
+      })
+    })
+    return locations;
+  }
 
 
 }

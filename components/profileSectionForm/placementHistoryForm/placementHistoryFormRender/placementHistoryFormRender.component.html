@@ -10,9 +10,12 @@
 
             </md-input-container>
             <span> for the Job Role of </span>
-            <md-input-container class="full-width">
-                <input mdInput formControlName="jobRole" id="jobRole" type="text" class="validate" placeholder="Job Role" />      
-            </md-input-container>
+            <md-select placeholder="Job Role" formControlName="jobRole" class="full-width">
+              <md-option *ngFor="let jobRole of jobRoles" color="accent" [value]="jobRole">
+                {{ jobRole }}
+              </md-option>
+            </md-select>
+            
             <span> with designation as </span>
             <md-input-container class="full-width">
                     <input mdInput formControlName="designation" id="designation" type="text" class="validate" placeholder="Designation Name"/>
@@ -20,10 +23,17 @@
             </md-input-container>
             <span> at location </span>
 
-            <md-input-container class="full-width">
-                <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="worklocation" />
-                
-            </md-input-container>
+            <md-select formControlName="location" placeholder="Location" class="full-width">
+          <md-option *ngFor="let location of locations" color="accent" [value]="location">
+                      {{ location }}
+          </md-option>
+          
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.location.valid && userForm.controls.AllPlacementHistory.controls[i].controls.location.touched" class="errorStyle">
+            Location is Required
+            </div>
+          </md-hint>
+        </md-select>
             
             <span>, on </span>
             <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="from" id="from" placeholder="Applied Date" class="full-width">date</md2-datepicker>
@@ -103,6 +113,6 @@
     </div> 
 
         <button md-raised-button type="submit" color="primary" (click)="addPlacementHistory()">ADD</button>
-        <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid" md-dialog-close>Save</button>    
+        <button md-raised-button type="submit" color="primary" (click)="onSave()" md-dialog-close>Save</button>    
 
 </form>

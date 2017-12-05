@@ -21,6 +21,8 @@ export class SkillsFormRender implements OnInit {
   @Input()
   public skillsData: any[];
 
+  public skills: any[] = this.getSkills();
+  
   levels = [
     { name: 'BEGINNER', value: 'Beginner' },
     { name: 'MODERATE', value: 'Moderate' },
@@ -97,7 +99,16 @@ export class SkillsFormRender implements OnInit {
 
   }
 
-
+  getSkills(){
+    let skills : any = [];
+    this.http.get('/skills').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(skill: String){
+        skills.push(skill['name']);
+      })
+    })
+    return skills;
+  }
 
 
 }

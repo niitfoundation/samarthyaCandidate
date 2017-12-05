@@ -7,14 +7,16 @@
 
         <span>I know</span>
 
-        <md-input-container class="full-width">
-          <input mdInput formControlName="name" id="name" type="text" class="validate" placeholder="Skill Name" />
+        <md-select formControlName="name" placeholder="Skill Name" class="full-width">
+          <md-option *ngFor="let skill of skills" color="accent" [value]="skill">
+                      {{ skill }}
+          </md-option>
           <md-hint align="start" class="full-width">
             <div *ngIf="!userForm.controls.AllSkills.controls[i].controls.name.valid && userForm.controls.AllSkills.controls[i].controls.name.touched" class="errorStyle">
               Skill Name is Required
             </div>
           </md-hint>
-        </md-input-container>
+        </md-select>
 
         <span>of</span>
         <md-select placeholder="Expertise Level" formControlName="expertise" id="expertise">
@@ -44,7 +46,7 @@
     </div>
   </div>
   <button md-raised-button type="submit" color="primary" (click)="addSkills()">ADD</button>
-  <button md-raised-button type="submit" color="primary" [disabled]="!userForm.valid" (click)="onSave()"  md-dialog-close>Save</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()"  md-dialog-close>Save</button>
 
 
 </form>

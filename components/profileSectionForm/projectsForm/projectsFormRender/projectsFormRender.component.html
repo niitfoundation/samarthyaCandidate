@@ -32,27 +32,28 @@
 
 
   <span> in </span>
-  <md-input-container class="full-width">
-    <input mdInput formControlName="location" id="location" type="text" class="validate" placeholder="Location" />
-    <md-hint align="start" class="full-width">
-      <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.location.valid && userForm.controls.AllProjects.controls[i].controls.location.touched"
-        class="errorStyle">
-        Location is required
-        </div>
-    </md-hint>
-  </md-input-container>
+          <md-select formControlName="location" placeholder="Location" class="full-width">
+          <md-option *ngFor="let location of locations" color="accent" [value]="location">
+                      {{ location }}
+          </md-option>
+          
+          <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.location.valid && userForm.controls.AllProjects.controls[i].controls.location.touched" class="errorStyle">
+            Location is Required
+            </div>
+          </md-hint>
+        </md-select>
 
   <span>with the skills of </span>
-  <md-input-container class="full-width">
-    <input mdInput formControlName="skills" id="skills" type="text" class="validate" placeholder="Skills (seperate the skills with , )"
-    />
-    <md-hint align="start" class="full-width">
+  <md2-select formControlName="skills" id="skills" class="validate widthSmall" placeholder="Skills" [multiple]="true" #selectMultipleControl>
+      <md2-option *ngFor="let skill of skills" value="{{skill}}">{{skill}}</md2-option>
+       <md-hint align="start" class="full-width">
       <div *ngIf="!userForm.controls.AllProjects.controls[i].controls.skills.valid && userForm.controls.AllProjects.controls[i].controls.skills.touched"
         class="errorStyle">
         Skill is required
         </div>
     </md-hint>
-  </md-input-container>
+      </md2-select>
 
 
   <span>as a role of </span>
@@ -73,7 +74,7 @@
   </div>
   <!--</div>-->
   <button md-raised-button type="submit" color="primary" (click)="addProject()">ADD</button>
-  <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid" md-dialog-close>SAVE</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()" md-dialog-close>SAVE</button>
 
 
 </form>

@@ -21,6 +21,9 @@ export class ProjectsFormRender implements OnInit {
   @Input()
   public projectsData: any[];
 
+  public skills: any[] = this.getSkills();
+  public locations: any[] = this.getLocations();
+
   constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data,private authenticationService:AuthenticationService) {
   }
 
@@ -126,7 +129,27 @@ export class ProjectsFormRender implements OnInit {
 
   }
 
+  getSkills(){
+    let skills : any = [];
+    this.http.get('/skills').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(skill: String){
+        skills.push(skill['name']);
+      })
+    })
+    return skills;
+  }
 
+  getLocations(){
+    let locations : any = [];
+    this.http.get('/locations').subscribe((response: Response) => {
+      let data = response.json();
+      data.forEach(function(location: String){
+        locations.push(location['name']);
+      })
+    })
+    return locations;
+  }
 
 
 }
