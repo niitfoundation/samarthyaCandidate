@@ -60,7 +60,7 @@
     "connect-flash": "0.1.1",
     "md2": "0.0.16",
     "rxjs": "^5.0.1",
-    "samarthyaWebcomponent": "git+https://github.com/niitfoundation/samarthyaWebcomponent.git#uat-1",
+    "samarthyaWebcomponent": "git+https://github.com/niitfoundation/samarthyaWebcomponent.git#placementSec",
     "ts-helpers": "^1.1.1",
     "zone.js": "^0.7.2"
   },
