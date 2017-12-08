@@ -58,6 +58,10 @@ md-card-title {
     background-color: white;*/
 }
 
+.background {
+    background-position: center;
+    background-size: 100% 100%;
+}
 
 /*for smaller screens*/
 

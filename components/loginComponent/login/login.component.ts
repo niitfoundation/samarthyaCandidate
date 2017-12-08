@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   public userForm: FormGroup;
   public loading = false;
   public returnUrl: String;
+  public imgUrl: String;
 
   constructor( @Inject(FormBuilder) fb: FormBuilder, private emailservice: EmailService, private JsonDataService: JsonDataService,
     private snackBar: MdSnackBar, private viewContainerRef: ViewContainerRef, private router: Router, private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.imgUrl = "assets/img/nf.jpg";
     if (localStorage.getItem('currentUser')) {
       this.redirect();
     }

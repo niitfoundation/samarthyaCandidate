@@ -1,5 +1,9 @@
+
 <!--login Header-->
 <app-login-header></app-login-header>
+
+<!-- adding background image -->
+<div class="background" [ngStyle]="{'background-image': 'url(' + imgUrl + ')'}">
 
 <!--login card-->
 <div *ngIf="loading" class="progressBar">
@@ -80,6 +84,6 @@
     <!--card-ends-->
   </md-grid-tile>
 </md-grid-list>
-
+</div>
 <!--footer-->
 <app-login-footer></app-login-footer>
