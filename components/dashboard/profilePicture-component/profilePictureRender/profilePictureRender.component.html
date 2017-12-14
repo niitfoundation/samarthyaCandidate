@@ -1,0 +1,17 @@
+   <form [formGroup]="userForm">
+  <div fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+  <i class="material-icons">link</i>
+  <div formArrayName = "profile">
+    <div *ngFor="let address of userForm.controls.profile.controls; let i=index" class="panel panel-default">
+    <div class="panel-body" [formGroupName]="i">
+      <md-input-container>
+      <input mdInput formControlName="profilePicUrl" id="profilePicUrl" type="text"  placeholder="Profile Picture URL"/>
+      </md-input-container>
+      </div>
+      </div>
+      </div>
+  </div>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()" md-dialog-close>SAVE</button>
+  </div>
+  </form>

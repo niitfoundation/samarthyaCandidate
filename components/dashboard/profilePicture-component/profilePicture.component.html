@@ -1,0 +1,19 @@
+<h2 md-dialog-title>
+
+  <div fxLayout="row">
+    <div>Edit Profile Picture</div>
+    <div fxFlex></div>
+    <div>
+      <button md-icon-button class="closeBtn" md-dialog-close>
+          <i class="material-icons">close</i>
+      </button>
+
+    </div>
+  </div>
+</h2>
+<md-dialog-content>
+  <prof-pic-render [profilePicture] = "profilePictureUrl"></prof-pic-render>
+    <div fxLayout="row">
+        <div fxFlex></div>
+    </div>
+</md-dialog-content>

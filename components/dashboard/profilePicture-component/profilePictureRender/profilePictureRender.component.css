@@ -1,0 +1,39 @@
+.title {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+}
+span{
+    /*margin-left: 10px;*/
+    margin-right: 10px;
+    color: dimgray;
+    font-size: 20px;
+}
+.toolbar{
+    margin: 0px;
+    padding: 0px;
+}
+
+.header{
+   margin: 0px;
+    padding: 40px;
+}
+.closeBtn{
+ top:-10px;
+  }
+  input{
+      font-size: 20px;
+  }
+
+
+.errorStyle {
+    color: #F44336;
+}
+input{
+    min-width: 80px;
+}
+
