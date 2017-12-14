@@ -49,7 +49,8 @@ import { ProfileService } from 'samarthyaWebcomponent/sam-profile/sam-profile-se
 import { SamProfileSectionFormComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-section-form/sam-profile-section-form.component';
 import { SamProfileSectionComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-section/sam-profile-section.component';
 import { SamProfileCardComponent } from 'samarthyaWebcomponent/sam-profile/sam-profile-card/sam-profile-card.component';
-import { ProfilePicComponent } from './components/dashboard/profilePicture.component';
+import { ProfilePictureComponent } from './components/dashboard/profilePicture-component/profilePicture.component';
+import { ProfilePictureRender } from './components/dashboard/profilePicture-component/profilePictureRender/profilePictureRender.component';
 
 @NgModule({
   imports: [
@@ -68,7 +69,8 @@ import { ProfilePicComponent } from './components/dashboard/profilePicture.compo
     SkillsForm,
     AboutUsComponent,
     CandidateRegisterComponent,
-    ProfilePicComponent,
+    ProfilePictureComponent,
+    ProfilePictureRender,
     DashboardComponent,
     LayoutComponent,
     LoginComponent,
@@ -93,7 +95,7 @@ import { ProfilePicComponent } from './components/dashboard/profilePicture.compo
     PlacementHistoryFormRender,
     WorkExperienceFormRender
   ],
-  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm, QualificationForm, PlacementHistoryForm, ProfilePicComponent],
+  bootstrap: [MainComponent, PersonalInfoForm, SkillsForm, WorkExperienceForm, SummaryForm, JobPreferenceForm, ProjectsForm, QualificationForm, PlacementHistoryForm, ProfilePictureComponent],
   exports: [
     SkillsForm,
     SkillsFormRender,
@@ -101,7 +103,8 @@ import { ProfilePicComponent } from './components/dashboard/profilePicture.compo
     DashboardComponent,
     LayoutComponent,
     LoginComponent,
-    ProfilePicComponent,
+    ProfilePictureComponent,
+    ProfilePictureRender,
     CandidateRegisterComponent,
     ForgotPasswordComponent,
     LoginFooterComponent,
