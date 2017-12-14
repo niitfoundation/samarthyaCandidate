@@ -71,20 +71,20 @@ selectedValue : String;
     let placementHistoryEntries = this.placementHistoryData.map((placementHistory) => {
       return this.fb.group({
         workplace: [placementHistory.workplace, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        designation: [placementHistory.designation, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        designation: [placementHistory.designation, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         jobRole: [placementHistory.jobRole, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        location: [placementHistory.location, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        from: [placementHistory.duration.start, Validators.required],
-        till: [placementHistory.duration.end, Validators.required],
+        location: [placementHistory.location, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+        from: [placementHistory.duration.start],
+        till: [placementHistory.duration.end, [Validators.required]],
         salary: [placementHistory.salary], //Max six digits, a dot, max two digits after dot
-        placementType: [placementHistory.placementType, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        placementStatus: [placementHistory.placementStatus,[Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        placementType: [placementHistory.placementType, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+        placementStatus: [placementHistory.placementStatus,[ Validators.pattern('^[a-zA-Z\\s]*$')]],
         coordinatorName: [placementHistory.coordinatorName],
         coordinatorContact: [placementHistory.coordinatorContact], // contact number with +91 - India Code
-        placementRemarks: [placementHistory.placementRemarks, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        employerName: [placementHistory.employerName, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        placementRemarks: [placementHistory.placementRemarks, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+        employerName: [placementHistory.employerName, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         employerContact: [placementHistory.employerContact],
-        employerFeedback: [placementHistory.employerFeedback, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        employerFeedback: [placementHistory.employerFeedback, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         iscurrent: [placementHistory.status]
       });
     });
@@ -94,20 +94,20 @@ selectedValue : String;
   initPlacementHistoryForm() {
     return this.fb.group({
         workplace: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        designation: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        designation: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         jobRole: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        location: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        from: ['', Validators.required],
-        till: ['', Validators.required],
+        location: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+        from: [''],
+        till: ['',[Validators.required]],
         salary: [''], //Max six digits, a dot, max two digits after dot
-        placementType: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        placementType: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         placementStatus: [''],
-        coordinatorName: ['',[Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]], 
+        coordinatorName: ['',[ Validators.pattern('^[a-zA-Z\\s]*$')]], 
         coordinatorContact: [''], // contact number with +91 - India Code
-        placementRemarks: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        employerName: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        placementRemarks: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+        employerName: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         employerContact: [''],
-        employerFeedback: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        employerFeedback: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         iscurrent: ['']
     });
   }

@@ -55,12 +55,12 @@ export class WorkExperienceFormRender implements OnInit {
     let workExperienceEntries = this.workExperienceData.map((experience) => {
       return this.fb.group({
         workplace: [experience.workplace, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        designation: [experience.designation, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        jobRole: [experience.jobRole, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        designation: [experience.designation, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+        jobRole: [experience.jobRole, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
         lastSalary: [experience.lastSalary],
-        location: [experience.location, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        from: [experience.duration.start, Validators.required],
-        till: [experience.duration.end, Validators.required],
+        location: [experience.location, [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+        from: [experience.duration.start],
+        till: [experience.duration.end],
         iscurrent: [experience.status]
       });
     });
@@ -72,12 +72,12 @@ export class WorkExperienceFormRender implements OnInit {
   initWorkExperiencesForm() {
     return this.fb.group({
       workplace: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-      designation: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-      jobRole: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+      designation: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+      jobRole: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
       lastSalary: [''],
-      location: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-      from: ['', Validators.required],
-      till: ['', Validators.required],
+      location: ['', [ Validators.pattern('^[a-zA-Z\\s]*$')]],
+      from: [''],
+      till: [''],
       iscurrent: ['']
     });
   }

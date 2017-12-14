@@ -55,12 +55,12 @@ export class ProjectsFormRender implements OnInit {
     let projectsEntries = this.projectsData.map((project) => {
       return this.fb.group({
         name: [project.name, [Validators.required]],
-        durFrom: [project.duration.start, [Validators.required]],
-        durTo: [project.duration.end, [Validators.required]],
+        durFrom: [project.duration.start],
+        durTo: [project.duration.end],
 
-        location: [project.location, [Validators.required]],
-        skills: [project.skills, [Validators.required]],
-        jobRole: [project.jobRole, [Validators.required]]
+        location: [project.location],
+        skills: [project.skills],
+        jobRole: [project.jobRole]
       });
     });
 
@@ -70,13 +70,13 @@ export class ProjectsFormRender implements OnInit {
   //to get the form
   initProjectsForm() {
     return this.fb.group({
-      name: ['', [Validators.required]],
-      durFrom: ['', [Validators.required]],
-      durTo: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9\\s]*$')]],
+      durFrom: [''],
+      durTo: [''],
 
-      location: ['', [Validators.required]],
-      skills: ['', [Validators.required]],
-      jobRole: ['', [Validators.required]]
+      location: [''],
+      skills: [''],
+      jobRole: ['']
     });
 
   }

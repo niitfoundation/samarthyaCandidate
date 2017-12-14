@@ -60,13 +60,13 @@ export class QualificationFormRender implements OnInit {
     let qualificationEntries = this.qualificationsData.map((qualification) => {
       return this.fb.group({
         name: [qualification.name, [Validators.required]],
-        subject: [qualification.subject, [Validators.required]],
-        academictype: [qualification.academictype, [Validators.required]],
-        batch: [qualification.batch.substring(0, 10), [Validators.required]],
-        result: [qualification.result, [Validators.required]],
-        institute: [qualification.institute, [Validators.required]],
-        affiliation: [qualification.affiliation, [Validators.required]],
-        location: [qualification.location, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        subject: [qualification.subject],
+        academictype: [qualification.academictype],
+        batch: [qualification.batch.substring(0, 10)],
+        result: [qualification.result],
+        institute: [qualification.institute],
+        affiliation: [qualification.affiliation],
+        location: [qualification.location, [Validators.pattern('^[a-zA-Z\\s]*$')]],
       });
     });
 
@@ -77,13 +77,13 @@ export class QualificationFormRender implements OnInit {
     console.log("cccc")
     return this.fb.group({
       name: ['', [Validators.required]],
-      subject: ['', [Validators.required]],
+      subject: [''],
       academictype: ['', [Validators.required]],
-      batch: ['', [Validators.required]],
-      result: ['', [Validators.required]],
-      institute: ['', [Validators.required]],
-      affiliation: ['', [Validators.required]],
-      location: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+      batch: [''],
+      result: [''],
+      institute: [''],
+      affiliation: [''],
+      location: ['', [Validators.pattern('^[a-zA-Z\\s]*$')]],
     });
   }
   addQualifications() {

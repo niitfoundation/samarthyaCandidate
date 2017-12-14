@@ -7,13 +7,22 @@
             <span>Applied at </span>
             <md-input-container class="full-width">
                     <input mdInput formControlName="workplace" id="workplace" type="text" class="validate" placeholder="WorkPlace Name" />
-
+            <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.workplace.valid && userForm.controls.AllPlacementHistory.controls[i].controls.workplace.touched" class="errorStyle">
+            WorkPlace Name is Required
+            </div>
+            </md-hint>
             </md-input-container>
             <span> for the Job Role of </span>
             <md-select placeholder="Job Role" formControlName="jobRole" class="full-width">
               <md-option *ngFor="let jobRole of jobRoles" color="accent" [value]="jobRole">
                 {{ jobRole }}
               </md-option>
+            <md-hint align="start" class="full-width">
+            <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.jobRole.valid && userForm.controls.AllPlacementHistory.controls[i].controls.jobRole.touched" class="errorStyle">
+            Job Role is Required
+            </div>
+            </md-hint>
             </md-select>
             
             <span> with designation as </span>
@@ -24,34 +33,16 @@
             <span> at location </span>
 
             <md-select formControlName="location" placeholder="Location" class="full-width">
-          <md-option *ngFor="let location of locations" color="accent" [value]="location">
-                      {{ location }}
-          </md-option>
-          
-          <md-hint align="start" class="full-width">
-            <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.location.valid && userForm.controls.AllPlacementHistory.controls[i].controls.location.touched" class="errorStyle">
-            Location is Required
-            </div>
-          </md-hint>
-        </md-select>
+              <md-option *ngFor="let location of locations" color="accent" [value]="location">
+                          {{ location }}
+              </md-option>
+            </md-select>
             
             <span>, on </span>
             <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="from" id="from" placeholder="Applied Date" class="full-width">date</md2-datepicker>
-            <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.from.valid && userForm.controls.AllPlacementHistory.controls[i].controls.from.touched" class="errorStyle">
-            </div>
+    
             <span> .</span>
-               <!--  <span class="lineHeight">till</span>
-                <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="till" id="till" placeholder="end year" class="full-width">date</md2-datepicker>
-                <div *ngIf="!userForm.controls.AllPlacementHistory.controls[i].controls.till.valid && userForm.controls.AllPlacementHistory.controls[i].controls.till.touched"
-                    class="errorStyle"> 
-
-                </div>-->
             <br><br>
-            <!-- <span> with a salary of </span>
-            <md-input-container class="full-width">
-                    <input mdInput formControlName="salary" id="salary" type="text" class="validate" placeholder="Salary"/>
-                  
-            </md-input-container> -->
 
             <span>Company contact person is </span>
             <md-input-container class="full-width">
@@ -113,6 +104,6 @@
     </div> 
 
         <button md-raised-button type="submit" color="primary" (click)="addPlacementHistory()">ADD</button>
-        <button md-raised-button type="submit" color="primary" (click)="onSave()" md-dialog-close>Save</button>    
+        <button md-raised-button type="submit" color="primary" [disabled]="!userForm.valid" (click)="onSave()" md-dialog-close>Save</button>    
 
 </form>

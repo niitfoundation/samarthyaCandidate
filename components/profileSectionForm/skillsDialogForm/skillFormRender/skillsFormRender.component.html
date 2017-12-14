@@ -28,11 +28,6 @@
         <md-input-container class="full-width">
           <input mdInput formControlName="experience" id="experience" type="text" class="validate" placeholder="Experience in Months"
           />
-          <md-hint align="start" class="full-width">
-            <div *ngIf="!userForm.controls.AllSkills.controls[i].controls.experience.valid && userForm.controls.AllSkills.controls[i].controls.experience.touched" class="errorStyle">
-              Experience is required
-            </div>
-          </md-hint>
         </md-input-container>
 
         <span> months </span>
@@ -46,7 +41,7 @@
     </div>
   </div>
   <button md-raised-button type="submit" color="primary" (click)="addSkills()">ADD</button>
-  <button md-raised-button type="submit" color="primary" (click)="onSave()"  md-dialog-close>Save</button>
+  <button md-raised-button type="submit" color="primary" [disabled]="!userForm.valid" (click)="onSave()"  md-dialog-close>Save</button>
 
 
 </form>

@@ -39,3 +39,6 @@ input{
 .panel-body{
   
 }
+.widthSmall{
+    max-width: 120px;
+}

@@ -15,12 +15,7 @@
                 <md-input-container class="full-width">
                     <input mdInput formControlName="designation" id="designation" type="text" class="validate" placeholder="Designation Name"
                     />
-                    <md-hint align="start" class="full-width">
-                        <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.designation.valid && userForm.controls.AllWorkExperience.controls[i].controls.designation.touched"
-                            class="errorStyle">
-                            Designation is Required
-            </div>
-            </md-hint>
+                    
             </md-input-container>
             <br>
             <span>and Job Role </span>
@@ -28,20 +23,14 @@
             <md-option *ngFor="let jobRole of jobRoles" color="accent" [value]="jobRole">
                   {{ jobRole }}
             </md-option>
-                <md-hint align="start" class="full-width">
-                    <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.jobRole.valid && userForm.controls.AllWorkExperience.controls[i].controls.jobRole.touched"
-                        class="errorStyle">
-                        JobRole is Required
-        </div>
-        </md-hint>
+                
+                    
         </md-select>
 
         <span> with last drawn salary as </span>
                 <md-input-container class="full-width">
                     <input mdInput formControlName="lastSalary" id="lastSalary" type="text" class="validate" placeholder="Last Salary" />
-                    <md-hint align="start" class="full-width">
-                    </md-hint>
-                </md-input-container>
+                 </md-input-container>
 
         <span>. My Work Location was </span>
 
@@ -50,27 +39,14 @@
                       {{ location }}
           </md-option>
           
-          <md-hint align="start" class="full-width">
-            <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.location.valid && userForm.controls.AllWorkExperience.controls[i].controls.location.touched" class="errorStyle">
-            Location is Required
-            </div>
-          </md-hint>
         </md-select>
 
     <div fxLayout="row">
         <span>from</span>
         <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="from" id="from" placeholder="start year" class="full-width">date</md2-datepicker>
-        <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.from.valid && userForm.controls.AllWorkExperience.controls[i].controls.from.touched"
-            class="errorStyle">
-
-        </div>
-
+        
     <span class="lineHeight">till</span>
     <md2-datepicker [min]="minDate" [max]="maxDate" formControlName="till" id="till" placeholder="end year" class="full-width">date</md2-datepicker>
-    <div *ngIf="!userForm.controls.AllWorkExperience.controls[i].controls.till.valid && userForm.controls.AllWorkExperience.controls[i].controls.till.touched"
-        class="errorStyle">
-
-        </div>
 
     </div>
         </div>
@@ -81,5 +57,5 @@
         </div>
 
         <button md-raised-button type="submit" color="primary" (click)="addWorkExperience()">ADD</button>
-        <button md-raised-button type="submit" color="primary" (click)="onSave()" md-dialog-close>Save</button>
+        <button md-raised-button type="submit" color="primary" [disabled]="!userForm.valid" (click)="onSave()" md-dialog-close>Save</button>
 </form>

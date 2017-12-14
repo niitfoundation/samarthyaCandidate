@@ -25,7 +25,7 @@ export class JobPreferenceFormRender implements OnInit {
 
   public engagementData = ['Full Time', 'Part Time', 'Flexible'];
   public locationData = ['Bangalore', 'Pune', 'Delhi', 'Gurgaon', 'Chennai'];
-  public shiftData = ['Morning Shift', 'Evening Shift', 'Overnight Shift'];
+  public shiftData = ['General Shift', 'Morning Shift', 'Evening Shift', 'Overnight Shift'];
 
   constructor(private fb: FormBuilder, private http: Http, private router: Router, private data: Data, private AuthenticationService:AuthenticationService) {
   }
@@ -58,13 +58,13 @@ export class JobPreferenceFormRender implements OnInit {
     let jobPreferenceEntries = this.jobPreferenceData.map((jobPreference) => {
       return this.fb.group({
         name: [jobPreference.name, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-        engagement: [jobPreference.engagement, [Validators.required, Validators.pattern(/[a-z]/)]],
-        shift: [jobPreference.shift, [Validators.required, Validators.pattern(/[a-z]/)]],
-        expectedSalMin: [jobPreference.expectedSal.min, [Validators.required, Validators.pattern(/[0-9]/)]],
-        expectedSalMax: [jobPreference.expectedSal.max, [Validators.required, Validators.pattern(/[0-9]/)]],
-        skills: [jobPreference.skills, [Validators.required]],
-        availableFrom: [jobPreference.availablefrom, [Validators.required]],
-        locations: [jobPreference.locations, [Validators.required]]
+        engagement: [jobPreference.engagement, [Validators.pattern(/[a-z]/)]],
+        shift: [jobPreference.shift, [ Validators.pattern(/[a-z]/)]],
+        expectedSalMin: [jobPreference.expectedSal.min, [ Validators.pattern(/[0-9]/)]],
+        expectedSalMax: [jobPreference.expectedSal.max, [ Validators.pattern(/[0-9]/)]],
+        skills: [jobPreference.skills],
+        availableFrom: [jobPreference.availablefrom],
+        locations: [jobPreference.locations]
       });
     });
 
@@ -75,13 +75,13 @@ export class JobPreferenceFormRender implements OnInit {
   initJobPreferenceForm() {
     return this.fb.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
-      engagement: ['', [Validators.required, Validators.pattern(/[a-z]/)]],
-      shift: ['', [Validators.required, Validators.pattern(/[a-z]/)]],
-      expectedSalMin: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
-      expectedSalMax: ['', [Validators.required, Validators.pattern(/[0-9]/)]],
-      skills: ['', [Validators.required]],
-      availableFrom: ['', [Validators.required]],
-      locations: ['', [Validators.required]]
+      engagement: ['', [ Validators.pattern(/[a-z]/)]],
+      shift: ['', [ Validators.pattern(/[a-z]/)]],
+      expectedSalMin: ['', [ Validators.pattern(/[0-9]/)]],
+      expectedSalMax: ['', [ Validators.pattern(/[0-9]/)]],
+      skills: [''],
+      availableFrom: [''],
+      locations: ['']
     });
   }
 

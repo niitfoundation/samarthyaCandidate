@@ -197,7 +197,7 @@
     </form>
     <div fxLayout="row">
       <div fxFlex></div>
-      <button md-raised-button type="submit" color="primary" md-dialog-close (click)="onSave()">Save</button>
+      <button md-raised-button type="submit" color="primary" [disabled]="!userForm.valid" md-dialog-close (click)="onSave()">Save</button>
     </div>
   </md-dialog-content>
 </div>

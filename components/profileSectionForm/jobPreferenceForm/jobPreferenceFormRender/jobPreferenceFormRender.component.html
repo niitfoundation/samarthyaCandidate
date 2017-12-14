@@ -4,25 +4,25 @@
       <button md-icon-button class="pull-right" *ngIf="userForm.controls.AllJobPreference.controls.length > 0" (click)="removeJobPreference(i)"> <i class="material-icons">close</i></button>
 <br>
       <div class="panel-body" [formGroupName]="i">
-
+    
     <span>I am looking for a</span>
+
     <md-select placeholder="Role" formControlName="name" class="full-width">
       <md-option *ngFor="let jobRole of jobRoles" color="accent" [value]="jobRole">
                   {{ jobRole }}
       </md-option>
     </md-select>
+    <md-hint align="start" class="full-width">
+        <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.name.valid && userForm.controls.AllJobPreference.controls[i].controls.name.touched" class="errorStyle">
+          Role is Required
+        </div>
+    </md-hint>
+
 
      <span>opportunity as a </span>
     <md-select placeholder="Engagement" formControlName="engagement" class="validate">
                 <md-option *ngFor="let engagement of engagementData" color="accent" [value]="engagement">
                   {{ engagement}}
-                </md-option>
-    </md-select>
-
-     <span>and shift as </span>
-    <md-select placeholder="Shift" formControlName="shift" class="validate">
-                <md-option *ngFor="let shift of shiftData" color="accent" [value]="shift">
-                  {{ shift }}
                 </md-option>
     </md-select>
 
@@ -32,14 +32,13 @@
     <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.availableFrom.valid && userForm.controls.AllJobPreference.controls[i].controls.availableFrom.touched" class="errorStyle">
     </div>
 
-
-    <span>and expecting anual remuneration of </span>
+    <span>and expecting annual remuneration of </span>
 
     <md-input-container class="full-width">
       <input mdInput formControlName="expectedSalMin" id="min" type="text" class="validate" placeholder="Salary min" />
       <md-hint align="start" class="full-width">
         <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.expectedSalMin.valid && userForm.controls.AllJobPreference.controls[i].controls.expectedSalMin.touched" class="errorStyle">
-          Salary is required
+          Salary entered is invalid
         </div>
       </md-hint>
     </md-input-container>
@@ -49,30 +48,43 @@
       <input mdInput formControlName="expectedSalMax" id="max" type="text" class="validate" placeholder="Salary max" />
       <md-hint align="start" class="full-width">
         <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.expectedSalMax.valid && userForm.controls.AllJobPreference.controls[i].controls.expectedSalMax.touched" class="errorStyle">
-          Salary is required
+          Salary entered is invalid
         </div>
       </md-hint>
     </md-input-container>
-
-    <span>,prefer to work at locations</span>
-
+    <span> , </span>
+    <div fxLayout="column" fxLayoutAlign="space-around start" >
+  <div fxLayout="row" fxLayoutAlign="start center" >
+    <span> prefer to work at locations</span>
          <md2-select  formControlName="locations" class="validate widthSmall" placeholder="locations*" [multiple]="true" #selectMultipleControl>
                   <md2-option *ngFor="let location of locationData" value="{{location}}">{{location}}</md2-option>
-                </md2-select>
-        <div *ngIf="!userForm.controls.AllJobPreference.controls[i].controls.locations.valid && userForm.controls.AllJobPreference.controls[i].controls.locations.touched" class="errorStyle">
-          Invalid locations
-        </div>
-
-    <span> Interested to work on </span>
-    <br><br>
+         </md2-select>
+        <span> . </span>
+    </div>
+    <br>
+    <div>
+    <span> My Shift Preference is </span>
+    <md-select placeholder="Shift" formControlName="shift" class="validate">
+                <md-option *ngFor="let shift of shiftData" color="accent" [value]="shift">
+                  {{ shift }}
+                </md-option>
+    </md-select>
+    <span> . </span>
+    </div>
+    <br>
+    <div fxLayout="row" fxLayoutAlign="start center" >
+    <span> I am interested to work on </span>
       <md2-select formControlName="skills" id="skills" class="validate widthSmall" placeholder="Skills" [multiple]="true" #selectMultipleControl>
         <md2-option *ngFor="let skill of skills" value="{{skill}}">{{skill}}</md2-option>
       </md2-select>
+      <span> . </span>
+    </div>
+      </div>
       </div>
       <br><hr>
     </div>
     </div>
     <button md-raised-button type="submit" color="primary" (click)="addJobPreference()">ADD</button>
-  <button md-raised-button type="submit" color="primary" (click)="onSave()" md-dialog-close>SAVE</button>
+  <button md-raised-button type="submit" color="primary" (click)="onSave()" [disabled]="!userForm.valid" md-dialog-close>SAVE</button>
 
   </form>

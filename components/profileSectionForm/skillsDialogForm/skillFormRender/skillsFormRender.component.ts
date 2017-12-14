@@ -48,8 +48,8 @@ export class SkillsFormRender implements OnInit {
     let skillEntries = this.skillsData.map((skill) => {
       return this.fb.group({
         name: [skill.name, [Validators.required]],
-        experience: [skill.experience, [Validators.required, Validators.pattern('[0-9]{0,3}')]],
-        expertise: [skill.expertise, [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+        experience: [skill.experience],
+        expertise: [skill.expertise],
       });
     });
 
@@ -60,8 +60,8 @@ export class SkillsFormRender implements OnInit {
   initSkillsForm() {
     return this.fb.group({
       name: ['', [Validators.required]],
-      experience: ['', [Validators.required, Validators.pattern('[0-9]{0,3}')]],
-      expertise: ['', [Validators.required, Validators.pattern('^[a-zA-Z\\s]*$')]],
+      experience: [''],
+      expertise: [''],
     });
   }
 
