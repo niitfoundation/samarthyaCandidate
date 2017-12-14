@@ -3,7 +3,7 @@ import { WorkExperienceForm } from './../profileSectionForm/workExperienceForm/w
 import { QualificationForm } from './../profileSectionForm/qualificationForm/qualificationForm.component';
 import { SummaryForm } from './../profileSectionForm/summaryForm/summaryForm.component';
 import { UserService } from './../../services/user.service';
-import { ProfilePicComponent } from './profilePicture.component';
+import { ProfilePictureComponent } from './profilePicture-component/profilePicture.component';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { MdDialog, MdDialogRef } from '@angular/material';
@@ -61,6 +61,7 @@ export class DashboardComponent implements OnInit {
   public currentSectionName: string;
   public personalInfoData: {} = {};
   public jobpreferenceInfoData: {} = {};
+  public profilePicUrl: any[] = [];
   public projectsData: {} = {};
   public skillsData: any[] = [];
   public qualificationsData: any[] = [];
@@ -83,9 +84,10 @@ export class DashboardComponent implements OnInit {
   }
 
   openPicLinkDialog(){
-    let dialogRef = this.dialog.open(ProfilePicComponent, {
-      height: '20%',
-      width: '30%'
+    let dialogRef = this.dialog.open(ProfilePictureComponent, {
+      height: '40%',
+      width: '40%',
+      data: this.profilePicUrl
     });
     dialogRef.afterClosed().subscribe(result => {
     })
@@ -188,6 +190,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((resEmployeeData: any) => {
         console.log(resEmployeeData);
         this.profileData = resEmployeeData,
+          this.profilePicUrl.push(resEmployeeData.profilePic),
           this.jobpreferenceInfoData = resEmployeeData.jobPreferences,
           this.personalInfoData = resEmployeeData.personalInfo,
           this.qualificationsData = resEmployeeData.qualifications,

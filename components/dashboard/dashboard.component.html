@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <div *ngIf="profileConfig && profileData && profileCardData">
   <div fxLayout ="column" fxLayout.gt-sm="row" class="profilePage"> 
   
@@ -6,10 +8,11 @@
     <div class="profileCard">
       <sam-profile-card [profileCardData]="profileCardData">
       <div editPic>
-        <button md-button (click)="openPicLinkDialog()">Edit Picture</button>
+        <button md-icon-button (click)="openPicLinkDialog()">
+          <i class="material-icons md-dark">insert_photo</i>
+        </button>
       </div>
       </sam-profile-card>
-        
     </div>
 
     <!--spacing between components-->

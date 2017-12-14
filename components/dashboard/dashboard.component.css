@@ -17,3 +17,10 @@
 .footer{
  margin-top: 100px;
 }
+button {
+    font-size: 15px;
+}
+.material-icons {
+   color: gray;
+   font-size: 20px;
+}
