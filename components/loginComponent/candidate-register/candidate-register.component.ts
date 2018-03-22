@@ -161,7 +161,7 @@ export class CandidateRegisterComponent implements OnInit {
     this.pincodeLocation.records.forEach((element: any) => {
       officeName = element['officename'];
       officeName = officeName.substr(0, officeName.length - 4);
-      this.areaList.push(officeName + ', ' + element['Districtname'] + ', ' + element['statename']);
+      this.areaList.push(officeName + ', ' + element['districtname'] + ', ' + element['statename']);
     });
     if (this.areaList.length === 0) {
       this.data.openSnackBar('No Location Found', 'Please Try again');
