@@ -15,10 +15,10 @@ export class UserService {
   }
 
   getAll() {
-    return this.http.get('http://localhost:3000/api/showuser', this.jwt()).map((response: Response) => response.json());
+    return this.http.get('https://localhost:3000/api/showuser', this.jwt()).map((response: Response) => response.json());
   }
   // create(user:User){
-  //   return this.http.post('http://localhost:3005/users/register',user,this.jwt());
+  //   return this.http.post('https://localhost:3005/users/register',user,this.jwt());
   // }
 }
 
