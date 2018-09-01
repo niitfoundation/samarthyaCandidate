@@ -16,7 +16,7 @@ export class JsonDataService {
   + this.mygovKey + '&filters[pincode]=';
 
   // url to retrive data from json file for candidate navLinks
-  private urlNavlinks = 'auth/nav-menus';
+  private urlNavlinks = '/auth/nav-menus';
 
   // url to get langauges
   private urlLanguages = '/languages';
@@ -43,6 +43,7 @@ export class JsonDataService {
 
   // get json data for candidate navigatin links
   getNavLinks(token: any) {
+    console.log('authorization token')
     return this.http.get(this.urlNavlinks, this.authoriZation(token)).map((response: Response) => response.json());
   };
 
